@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style1.css">
-    <title>STEM WEEK</title>
+    <link rel="stylesheet" href="style.css">
+    <title>WARMI IN TECH</title>
 </head>
 <body>
 
     <form id="myform" class="box" action="index.html" method="POST">
-        <h1 id="titulo">IDENTIFICANDO GATITOS MÁGICAMENTE</h1>
+        <h1 id="titulo">IDENTIFICANDO GATITOS</h1>
         <p id="instrucciones">
-            Ingresa la URL de una imagen que contenga un animal para identificar si es un gatito.
+            Ingresa la URL de una imagen que contenga un gatito para identificar el pelaje.
         </p>
 
         <input id="url" type="url" placeholder="URL de la imágen">
@@ -32,10 +32,10 @@
     function sendtoPrediction() {
         const url = document.getElementById("url").value;
         $.ajax ({
-            url: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            url: "https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/0fc963bb-134b-4f02-b9a8-c5a06acd6844/classify/iterations/identificando-pelaje-gatos/url",
             beforeSend: function(xhr0bj) {
-                xhr0bj.setRequestHeader("Content-Type", "XXXXXXXXXXXXXX",);
-                xhr0bj.setRequestHeader("Prediction-Key", "XXXXXXXXXXXXXXXXXXXX",);
+                xhr0bj.setRequestHeader("Content-Type", "application/json",);
+                xhr0bj.setRequestHeader("Prediction-Key", "f5383ec229dc43218170ec96eab3be47",);
 
             },
             type: "POST",
@@ -55,11 +55,17 @@
             const finalPrediction = round(majorProbability * 100);
 
             switch (majorElement) {
-                case "Gatos":
-                    document.getElementById("result_space").innerHTML = "La foto corresponde a un gatito con una probabilidad del " + finalPrediction + " %."
+                case "pelo negro":
+                    document.getElementById("result_space").innerHTML = "La foto corresponde a un gatito negro con una probabilidad del " + finalPrediction + " %."
                     break;
-                case "Perros":
-                    document.getElementById("result_space").innerHTML = "La foto corresponde a un perrito con una probabilidad del " + finalPrediction + " %."
+                case "pelo naranja":
+                    document.getElementById("result_space").innerHTML = "La foto corresponde a un gatito naranja con una probabilidad del " + finalPrediction + " %."
+                    break;
+                case "pelo blanco":
+                    document.getElementById("result_space").innerHTML = "La foto corresponde a un gatito blanco con una probabilidad del " + finalPrediction + " %."
+                    break;  
+                case "pelo a rayas":
+                    document.getElementById("result_space").innerHTML = "La foto corresponde a un gatito a rayas con una probabilidad del " + finalPrediction + " %."
                     break; 
                 default: 
                     document.getElementById("result_space").innerHTML = "La foto parece no corresponder con el análisis"
